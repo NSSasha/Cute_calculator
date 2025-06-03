@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -137,6 +138,7 @@
       <option value="/">÷</option>
       <option value="sqrt">√</option>
       <option value="pi">π</option>
+      <option value="pow">^</option>
     </select>
     <label for="multiplier">ป้อนค่า</label>
     <input type="text" id="multiplier" placeholder="ตัวอย่างเช่น 725">
@@ -201,6 +203,7 @@
           if (A < 0) return document.getElementById("result").innerText = "ค่าที่ใส่ต้องไม่ติดลบ 💡";
           result = Math.sqrt(A); break;
         case 'pi': result = A * Math.PI; break;
+        case 'pow': result = Math.pow(A, B); break;
         default: return document.getElementById("result").innerText = "เกิดข้อผิดพลาด 💡";
       }
 

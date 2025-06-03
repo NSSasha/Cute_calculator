@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เครื่องคิดสะกิดใจ💖</title>
+  <style>
+    body {
+      font-family: 'Sarabun', sans-serif;
+      text-align: center;
+      background-color: #fff0f6;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .emoji-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .emoji-bg span {
+      position: absolute;
+      font-size: calc(1rem + 2vw);
+      opacity: 0.2;
+      animation: float 20s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    input, select, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    #op-label {
+      position: fixed;
+      bottom: 5px;
+      left: 10px;
+      font-size: 0.5rem;
+      opacity: 0.2;
+    }
+    #result {
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-top: 20px;
+      color: #d63384;
+    }
+  </style>
+</head>
+<body>
+  <div class="emoji-bg" id="emoji-bg"></div>
+  <div class="container">
+    <h2>เครื่องคิดสะกิดใจ💖</h2>
+    <p>เวอร์ชั่นทดลอง 1.0.0<br>โดย NS มาสเตอร์👑<br>พัฒนาโดย Sasha Dev Studio🌹</p>
+
+    <label>🔢 ป้อนจำนวน</label><br/>
+    <input type="number" id="amount" placeholder="ตัวอย่างเช่น 2.19"><br/>
+    <select id="unit">
+      <option value="1">ปกติ</option>
+      <option value="1e3">K</option>
+      <option value="1e6">M</option>
+      <option value="1e9">B</option>
+      <option value="1e12">T</option>
+      <option value="1e15">Qa</option>
+      <option value="1e18">Qi</option>
+      <option value="1e21">Sx</option>
+      <option value="1e24">Sp</option>
+      <option value="1e27">Oc</option>
+    </select><br/>
+
+    <label>🔣 เลือกเครื่องหมาย</label><br/>
+    <select id="operator">
+      <option value="*">×</option>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="/">÷</option>
+      <option value="sqrt">√</option>
+      <option value="pi">π</option>
+    </select><br/>
+
+    <label>ป้อนค่า</label><br/>
+    <input type="text" id="multiplier" placeholder="ตัวอย่างเช่น 725">
+    <select id="multi-unit">
+      <option value="1">ปกติ</option>
+      <option value="1e3">K</option>
+      <option value="1e6">M</option>
+      <option value="1e9">B</option>
+      <option value="1e12">T</option>
+      <option value="1e15">Qa</option>
+      <option value="1e18">Qi</option>
+      <option value="1e21">Sx</option>
+      <option value="1e24">Sp</option>
+      <option value="1e27">Oc</option>
+    </select><br/>
+
+    <button onclick="calculate()">คำนวณ</button>
+    <button onclick="resetAll()">รีเซ็ต</button>
+
+    <h3 id="result"></h3>
+  </div>
+  <div id="op-label">ผู้ลึกลับนาม OP</div>
+
+  <script>
+    const emojis = ['💖','💗','💞','💕','🥰','😍','🩷','🌷'];
+    const emojiContainer = document.getElementById('emoji-bg');
+    for (let i = 0; i < 30; i++) {
+      const e = document.createElement('span');
+      e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      e.style.top = Math.random() * 100 + '%';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.fontSize = ["1rem", "2rem", "3rem"][Math.floor(Math.random()*3)];
+      emojiContainer.appendChild(e);
+    }
+
+    function calculate() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const unit = parseFloat(document.getElementById('unit').value);
+      const multiplierInput = document.getElementById('multiplier').value;
+      const multiplier = parseFloat(multiplierInput);
+      const multiUnit = parseFloat(document.getElementById('multi-unit').value);
+      const operator = document.getElementById('operator').value;
+      const resultBox = document.getElementById("result");
+
+      if (isNaN(amount) || isNaN(unit) || (operator !== 'sqrt' && operator !== 'pi' && (isNaN(multiplier) || isNaN(multiUnit)))) {
+        resultBox.innerText = "โปรดใส่ให้ครบ";
+        return;
+      }
+
+      let A = amount * unit;
+      let B = multiplier * multiUnit;
+      let result;
+
+      if (operator === '+') result = A + B;
+      else if (operator === '-') result = A - B;
+      else if (operator === '*') result = A * B;
+      else if (operator === '/') result = A / B;
+      else if (operator === 'sqrt') result = Math.sqrt(A);
+      else if (operator === 'pi') result = A * Math.PI;
+
+      const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
+      let unitIndex = 0;
+      while (result >= 1000 && unitIndex < units.length - 1) {
+        result /= 1000;
+        unitIndex++;
+      }
+      resultBox.innerText = result.toFixed(2) + " " + units[unitIndex];
+    }
+
+    function resetAll() {
+      document.getElementById("amount").value = "";
+      document.getElementById("multiplier").value = "";
+      document.getElementById("result").innerText = "";
+    }
+  </script>
+</body>
+</html>

@@ -2,135 +2,187 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>เครื่องคิดสะกิดใจ💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Sarabun', sans-serif;
-      text-align: center;
-      background-color: #fff0f6;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(135deg, #f9d6db 0%, #fce4ec 100%);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(216, 27, 96, 0.1) 2px, transparent 3px),
+        radial-gradient(circle at 80% 40%, rgba(240, 98, 146, 0.1) 3px, transparent 4px),
+        radial-gradient(circle at 50% 80%, rgba(244, 143, 177, 0.1) 2.5px, transparent 3.5px);
+      background-repeat: repeat;
+      background-size: 80px 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       position: relative;
-      overflow: hidden;
+    }
+    .container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(255,105,180,0.3);
+      width: 360px;
+      padding: 30px 28px 36px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      margin: 0 0 12px;
+      color: #d81b60;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    p.subtitle {
+      margin: 0 0 20px;
+      color: #ad1457;
+      font-weight: 400;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      color: #ad1457;
+      margin-bottom: 6px;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 2px solid #f48fb1;
+      border-radius: 12px;
+      outline-color: #f06292;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 24px;
+      width: 48%;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(45deg, #d81b60, #f06292);
+      box-shadow: 0 6px 12px rgba(216,27,96,0.6);
+    }
+    button:hover {
+      background: linear-gradient(45deg, #f06292, #d81b60);
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #d81b60;
+      min-height: 2rem;
+      text-align: center;
+      user-select: none;
     }
     .emoji-bg {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
+      pointer-events: none;
     }
     .emoji-bg span {
       position: absolute;
-      font-size: calc(1rem + 2vw);
-      opacity: 0.2;
+      opacity: 0.15;
       animation: float 20s infinite ease-in-out;
+      user-select: none;
+      color: #ff69b4;
     }
     @keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
       100% { transform: translateY(0); }
     }
-    .container {
-      position: relative;
-      z-index: 1;
-    }
-    input, select, button {
-      margin: 10px;
-      padding: 10px;
-      font-size: 1rem;
-    }
     #op-label {
       position: fixed;
       bottom: 5px;
       left: 10px;
-      font-size: 0.5rem;
-      opacity: 0.2;
-    }
-    #result {
-      font-weight: bold;
-      font-size: 1.4rem;
-      margin-top: 20px;
-      color: #d63384;
+      font-size: 0.7rem;
+      color: rgba(255, 105, 180, 0.3);
+      font-weight: 600;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-  <div class="emoji-bg" id="emoji-bg"></div>
   <div class="container">
     <h2>เครื่องคิดสะกิดใจ💖</h2>
-    <p>เวอร์ชั่นทดลอง 1.0.0<br>โดย NS มาสเตอร์👑<br>พัฒนาโดย Sasha Dev Studio🌹</p>
-
-    <label>🔢 ป้อนจำนวน</label><br/>
-    <input type="number" id="amount" placeholder="ตัวอย่างเช่น 2.19"><br/>
-    <select id="unit">
-      <option value="1">ปกติ</option>
-      <option value="1e3">K</option>
-      <option value="1e6">M</option>
-      <option value="1e9">B</option>
-      <option value="1e12">T</option>
-      <option value="1e15">Qa</option>
-      <option value="1e18">Qi</option>
-      <option value="1e21">Sx</option>
-      <option value="1e24">Sp</option>
-      <option value="1e27">Oc</option>
-    </select><br/>
-
-    <label>🔣 เลือกเครื่องหมาย</label><br/>
+    <p class="subtitle">เวอร์ชั่นทดลอง 2.5.3 โดย NS มาสเตอร์👑<br>พัฒนาโดย Sasha Dev🌹</p>
+    <label for="amount">🔢 ป้อนจำนวน</label>
+    <input type="number" id="amount" placeholder="ตัวอย่างเช่น 2.19" step="any">
+    <label for="unit">หน่วย</label>
+    <select id="unit"></select>
+    <label for="operator">🔣 เลือกเครื่องหมาย</label>
     <select id="operator">
       <option value="*">×</option>
       <option value="+">+</option>
-      <option value="-">-</option>
+      <option value="-">−</option>
       <option value="/">÷</option>
       <option value="sqrt">√</option>
       <option value="pi">π</option>
-    </select><br/>
-
-    <label>ป้อนค่า</label><br/>
+    </select>
+    <label for="multiplier">ป้อนค่า</label>
     <input type="text" id="multiplier" placeholder="ตัวอย่างเช่น 725">
-    <select id="multi-unit">
-      <option value="1">ปกติ</option>
-      <option value="1e3">K</option>
-      <option value="1e6">M</option>
-      <option value="1e9">B</option>
-      <option value="1e12">T</option>
-      <option value="1e15">Qa</option>
-      <option value="1e18">Qi</option>
-      <option value="1e21">Sx</option>
-      <option value="1e24">Sp</option>
-      <option value="1e27">Oc</option>
-    </select><br/>
-
-    <button onclick="calculate()">คำนวณ</button>
-    <button onclick="resetAll()">รีเซ็ต</button>
-
-    <h3 id="result"></h3>
+    <label for="multi-unit">หน่วย</label>
+    <select id="multi-unit"></select>
+    <div style="display:flex; justify-content:center; gap: 4%">
+      <button onclick="calculate()">คำนวณ</button>
+      <button onclick="resetAll()">รีเซ็ต</button>
+    </div>
+    <div id="result"></div>
   </div>
+  <div class="emoji-bg" id="emoji-bg"></div>
   <div id="op-label">ผู้ลึกลับนาม OP</div>
-
   <script>
-    const emojis = ['💖','💗','💞','💕','🥰','😍','🩷','🌷'];
+    const unitsMap = [
+      ["ปกติ", 1], ["K", 1e3], ["M", 1e6], ["B", 1e9], ["T", 1e12],
+      ["Qa", 1e15], ["Qi", 1e18], ["Sx", 1e21], ["Sp", 1e24], ["Oc", 1e27],
+      ["No", 1e30], ["Dc", 1e33], ["Ud", 1e36], ["Dd", 1e39], ["Td", 1e42],
+      ["Qad", 1e45], ["Qid", 1e48], ["Sxd", 1e51], ["Spd", 1e54], ["Ocd", 1e57], ["Vg", 1e60]
+    ];
+    for (const [label, val] of unitsMap) {
+      document.getElementById('unit').innerHTML += `<option value="${val}">${label}</option>`;
+      document.getElementById('multi-unit').innerHTML += `<option value="${val}">${label}</option>`;
+    }
+
+    const emojis = ['💖','💗','💞','💕','🥰','😍','🩷','🌷','🌸','🎀','🧸'];
     const emojiContainer = document.getElementById('emoji-bg');
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
       const e = document.createElement('span');
       e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       e.style.top = Math.random() * 100 + '%';
       e.style.left = Math.random() * 100 + '%';
-      e.style.fontSize = ["1rem", "2rem", "3rem"][Math.floor(Math.random()*3)];
+      e.style.fontSize = ["1rem", "1.5rem", "2rem", "2.5rem"][Math.floor(Math.random()*4)];
+      e.style.animationDelay = (Math.random()*20)+'s';
       emojiContainer.appendChild(e);
     }
 
     function calculate() {
-      const amount = parseFloat(document.getElementById('amount').value);
+      const amount = parseFloat(document.getElementById('amount').value.trim());
+      const multiplier = parseFloat(document.getElementById('multiplier').value.trim());
       const unit = parseFloat(document.getElementById('unit').value);
-      const multiplierInput = document.getElementById('multiplier').value;
-      const multiplier = parseFloat(multiplierInput);
       const multiUnit = parseFloat(document.getElementById('multi-unit').value);
       const operator = document.getElementById('operator').value;
-      const resultBox = document.getElementById("result");
 
-      if (isNaN(amount) || isNaN(unit) || (operator !== 'sqrt' && operator !== 'pi' && (isNaN(multiplier) || isNaN(multiUnit)))) {
-        resultBox.innerText = "โปรดใส่ให้ครบ";
+      if (isNaN(amount) || (operator !== 'sqrt' && operator !== 'pi' && isNaN(multiplier))) {
+        document.getElementById("result").innerText = "โปรดใส่ให้ครบ 💡";
         return;
       }
 
@@ -138,25 +190,34 @@
       let B = multiplier * multiUnit;
       let result;
 
-      if (operator === '+') result = A + B;
-      else if (operator === '-') result = A - B;
-      else if (operator === '*') result = A * B;
-      else if (operator === '/') result = A / B;
-      else if (operator === 'sqrt') result = Math.sqrt(A);
-      else if (operator === 'pi') result = A * Math.PI;
+      switch(operator) {
+        case '+': result = A + B; break;
+        case '-': result = A - B; break;
+        case '*': result = A * B; break;
+        case '/':
+          if (B === 0) return document.getElementById("result").innerText = "ไม่สามารถหารด้วยศูนย์ได้ 💡";
+          result = A / B; break;
+        case 'sqrt':
+          if (A < 0) return document.getElementById("result").innerText = "ค่าที่ใส่ต้องไม่ติดลบ 💡";
+          result = Math.sqrt(A); break;
+        case 'pi': result = A * Math.PI; break;
+        default: return document.getElementById("result").innerText = "เกิดข้อผิดพลาด 💡";
+      }
 
-      const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
       let unitIndex = 0;
-      while (result >= 1000 && unitIndex < units.length - 1) {
+      while (result >= 1000 && unitIndex < unitsMap.length - 1) {
         result /= 1000;
         unitIndex++;
       }
-      resultBox.innerText = result.toFixed(2) + " " + units[unitIndex];
+      document.getElementById("result").innerText = result.toFixed(2) + " " + unitsMap[unitIndex][0];
     }
 
     function resetAll() {
       document.getElementById("amount").value = "";
       document.getElementById("multiplier").value = "";
+      document.getElementById("unit").value = "1";
+      document.getElementById("multi-unit").value = "1";
+      document.getElementById("operator").value = "*";
       document.getElementById("result").innerText = "";
     }
   </script>

@@ -1,177 +1,157 @@
-<!DOCTYPE html><html lang="th">
+
+<!DOCTYPE html>
+<html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>เครื่องคิดสะกิดใจ💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Orbitron', 'Kanit', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364), url('https://www.transparenttextures.com/patterns/stardust.png'), url('https://www.transparenttextures.com/patterns/lightning.png');
-      background-blend-mode: overlay;
-      background-size: cover, 400px, 300px;
-      animation: moveBG 20s linear infinite;
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(135deg, #f9d6db 0%, #fce4ec 100%);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(216, 27, 96, 0.1) 2px, transparent 3px),
+        radial-gradient(circle at 80% 40%, rgba(240, 98, 146, 0.1) 3px, transparent 4px),
+        radial-gradient(circle at 50% 80%, rgba(244, 143, 177, 0.1) 2.5px, transparent 3.5px);
+      background-repeat: repeat;
+      background-size: 80px 80px;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
-      color: #b3e5fc;
-    }
-    @keyframes moveBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      position: relative;
     }
     .container {
-      background: rgba(26, 0, 51, 0.9);
-      border: 1px solid #80d8ff;
-      border-radius: 20px;
-      padding: 28px;
-      width: 380px;
-      box-shadow: 0 0 30px #00e5ff, 0 0 10px #7c4dff inset;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(255,105,180,0.3);
+      width: 360px;
+      padding: 30px 28px 36px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
     }
     h2 {
-      color: #7c4dff;
+      margin: 0 0 12px;
+      color: #d81b60;
+      font-weight: 700;
       font-size: 1.8rem;
       text-align: center;
-      margin-bottom: 10px;
     }
     p.subtitle {
-      font-size: 0.85rem;
-      color: #ce93d8;
+      margin: 0 0 20px;
+      color: #ad1457;
+      font-weight: 400;
+      font-size: 0.9rem;
       text-align: center;
-      margin-bottom: 20px;
     }
     label {
       display: block;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #b388ff;
+      font-weight: 600;
+      color: #ad1457;
+      margin-bottom: 6px;
+      margin-top: 14px;
+      font-size: 0.95rem;
     }
-    input[type="number"], input[type="text"], select {
+    input, select {
       width: 100%;
-      padding: 10px;
+      padding: 12px 14px;
       font-size: 1rem;
-      background: #130f40;
-      color: #b3e5fc;
-      border: 1px solid #7c4dff;
-      border-radius: 10px;
-      margin-top: 4px;
-      outline: none;
+      border: 2px solid #f48fb1;
+      border-radius: 12px;
+      outline-color: #f06292;
       box-sizing: border-box;
     }
     button {
+      margin-top: 24px;
       width: 48%;
-      padding: 12px 0;
-      margin-top: 16px;
-      font-weight: bold;
-      font-size: 1rem;
-      background: linear-gradient(45deg, #7c4dff, #00e5ff);
-      color: #0a001f;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 14px;
       border: none;
-      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 12px #00e5ff;
+      color: white;
+      background: linear-gradient(45deg, #d81b60, #f06292);
+      box-shadow: 0 6px 12px rgba(216,27,96,0.6);
     }
     button:hover {
-      background: linear-gradient(45deg, #00e5ff, #7c4dff);
+      background: linear-gradient(45deg, #f06292, #d81b60);
     }
     #result {
-      margin-top: 20px;
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #84ffff;
-      text-align: center;
+      margin-top: 30px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #d81b60;
       min-height: 2rem;
+      text-align: center;
+      user-select: none;
     }
-    .cyber-glow {
+    .emoji-bg {
       position: absolute;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
-      overflow: hidden;
+      width: 100%;
+      height: 100%;
       z-index: 0;
+      pointer-events: none;
     }
-    .cyber-glow span {
+    .emoji-bg span {
       position: absolute;
-      width: 2rem;
-      height: 2rem;
-      background: rgba(0,229,255,0.15);
-      border-radius: 50%;
-      box-shadow: 0 0 15px #00e5ff;
-      animation: glowMove 12s linear infinite;
+      opacity: 0.15;
+      animation: float 20s infinite ease-in-out;
+      user-select: none;
+      color: #ff69b4;
     }
-    @keyframes glowMove {
-      0% { transform: translateY(0); opacity: 0.3; }
-      50% { transform: translateY(-30px); opacity: 0.8; }
-      100% { transform: translateY(0); opacity: 0.3; }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
     }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Kanit:wght@600&display=swap" rel="stylesheet">
-  <style>
-    .glitter-text {
-      animation: glitter 1.8s infinite alternate;
-      background: linear-gradient(90deg, #a082ff, #00e5ff, #a082ff);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    @keyframes glitter {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .typewriter-glow {
-      overflow: hidden;
-      border-right: 3px solid #00e5ff;
-      white-space: nowrap;
-      animation: typing 3s steps(40, end), blink 0.8s step-end infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    @keyframes blink {
-      from, to { border-color: transparent; }
-      50% { border-color: #00e5ff; }
+    #op-label {
+      position: fixed;
+      bottom: 5px;
+      left: 10px;
+      font-size: 0.7rem;
+      color: rgba(255, 105, 180, 0.3);
+      font-weight: 600;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-  <div class="cyber-glow" id="glow"></div>
   <div class="container">
-    <h2 class="glitter-text typewriter-glow" style="text-align: center; display: block; margin: 0 auto;" style="font-family: 'Orbitron', 'Kanit', sans-serif;">⚡ เครื่องคิดสะกิดใจ 💖</h2>
-    <p class="subtitle">เวอร์ชั่น 2.6.0 • โหมดไซเบอร์ดิจิทัล 🌐🧠</p>
+    <h2>เครื่องคิดสะกิดใจ💖</h2>
+    <p class="subtitle">เวอร์ชั่นทดลอง 2.5.3 โดย NS มาสเตอร์👑<br>พัฒนาโดย Sasha Dev🌹</p>
     <label for="amount">🔢 ป้อนจำนวน</label>
     <input type="number" id="amount" placeholder="ตัวอย่างเช่น 2.19" step="any">
-    <label for="unit">📏 หน่วย</label>
+    <label for="unit">หน่วย</label>
     <select id="unit"></select>
-    <label for="operator">🧮 เลือกเครื่องหมาย</label>
+    <label for="operator">🔣 เลือกเครื่องหมาย</label>
     <select id="operator">
       <option value="*">×</option>
       <option value="+">+</option>
       <option value="-">−</option>
       <option value="/">÷</option>
-      <option value="^">^ (ยกกำลัง)</option>
       <option value="sqrt">√</option>
       <option value="pi">π</option>
+      <option value="pow">^</option>
     </select>
-    <label for="multiplier">💡 ป้อนค่า</label>
+    <label for="multiplier">ป้อนค่า</label>
     <input type="text" id="multiplier" placeholder="ตัวอย่างเช่น 725">
-    <label for="multi-unit">📏 หน่วย</label>
+    <label for="multi-unit">หน่วย</label>
     <select id="multi-unit"></select>
-    <div style="display:flex; justify-content: space-between;">
-      <button onclick="calculate()">✨ คำนวณ</button>
-      <button onclick="resetAll()">🔄 รีเซ็ต</button>
+    <div style="display:flex; justify-content:center; gap: 4%">
+      <button onclick="calculate()">คำนวณ</button>
+      <button onclick="resetAll()">รีเซ็ต</button>
     </div>
     <div id="result"></div>
   </div>
+  <div class="emoji-bg" id="emoji-bg"></div>
+  <div id="op-label">ผู้ลึกลับนาม OP</div>
   <script>
     const unitsMap = [
       ["ปกติ", 1], ["K", 1e3], ["M", 1e6], ["B", 1e9], ["T", 1e12],
@@ -183,6 +163,19 @@
       document.getElementById('unit').innerHTML += `<option value="${val}">${label}</option>`;
       document.getElementById('multi-unit').innerHTML += `<option value="${val}">${label}</option>`;
     }
+
+    const emojis = ['💖','💗','💞','💕','🥰','😍','🩷','🌷','🌸','🎀','🧸'];
+    const emojiContainer = document.getElementById('emoji-bg');
+    for (let i = 0; i < 40; i++) {
+      const e = document.createElement('span');
+      e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      e.style.top = Math.random() * 100 + '%';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.fontSize = ["1rem", "1.5rem", "2rem", "2.5rem"][Math.floor(Math.random()*4)];
+      e.style.animationDelay = (Math.random()*20)+'s';
+      emojiContainer.appendChild(e);
+    }
+
     function calculate() {
       const amount = parseFloat(document.getElementById('amount').value.trim());
       const multiplier = parseFloat(document.getElementById('multiplier').value.trim());
@@ -191,7 +184,7 @@
       const operator = document.getElementById('operator').value;
 
       if (isNaN(amount) || (operator !== 'sqrt' && operator !== 'pi' && isNaN(multiplier))) {
-        document.getElementById("result").innerText = "⚠️ โปรดใส่ข้อมูลให้ครบ";
+        document.getElementById("result").innerText = "โปรดใส่ให้ครบ 💡";
         return;
       }
 
@@ -204,14 +197,14 @@
         case '-': result = A - B; break;
         case '*': result = A * B; break;
         case '/':
-          if (B === 0) return document.getElementById("result").innerText = "หารด้วยศูนย์ไม่ได้ ⚡";
+          if (B === 0) return document.getElementById("result").innerText = "ไม่สามารถหารด้วยศูนย์ได้ 💡";
           result = A / B; break;
-        case '^': result = Math.pow(A, B); break;
         case 'sqrt':
-          if (A < 0) return document.getElementById("result").innerText = "ค่าต้องไม่ติดลบ ⚡";
+          if (A < 0) return document.getElementById("result").innerText = "ค่าที่ใส่ต้องไม่ติดลบ 💡";
           result = Math.sqrt(A); break;
         case 'pi': result = A * Math.PI; break;
-        default: return document.getElementById("result").innerText = "เกิดข้อผิดพลาด 💥";
+        case 'pow': result = Math.pow(A, B); break;
+        default: return document.getElementById("result").innerText = "เกิดข้อผิดพลาด 💡";
       }
 
       let unitIndex = 0;
@@ -229,16 +222,6 @@
       document.getElementById("multi-unit").value = "1";
       document.getElementById("operator").value = "*";
       document.getElementById("result").innerText = "";
-    }
-
-    const glow = document.getElementById('glow');
-    for (let i = 0; i < 30; i++) {
-      const span = document.createElement('span');
-      span.style.left = Math.random() * 100 + '%';
-      span.style.top = Math.random() * 100 + '%';
-      span.style.width = span.style.height = `${Math.random() * 1.5 + 1}rem`;
-      span.style.animationDelay = `${Math.random() * 10}s`;
-      glow.appendChild(span);
     }
   </script>
 </body>
